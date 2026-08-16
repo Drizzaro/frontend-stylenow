@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 4%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 4%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 4%;
+        --primary: 272 61% 73%;
+        --primary-foreground: 273 60% 12%;
+        --primary-hover: 272 61% 66%;
+        --secondary: 0 0% 96%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96%;
+        --muted-foreground: 0 0% 42%;
+        --accent: 272 61% 73%;
+        --accent-foreground: 273 60% 12%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --success: 160 84% 30%;
+        --warning: 32 95% 40%;
+        --info: 217 91% 50%;
+        --border: 0 0% 89%;
+        --input: 0 0% 87%;
+        --ring: 272 61% 55%;
+        --surface: 0 0% 97%;
+        --surface-elevated: 0 0% 100%;
+        --radius: 0.75rem;
+    }
+    .dark {
+        --background: 0 0% 3.5%;
+        --foreground: 0 0% 98%;
+        --card: 0 0% 7%;
+        --card-foreground: 0 0% 98%;
+        --popover: 0 0% 7%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 272 61% 73%;
+        --primary-foreground: 273 65% 10%;
+        --primary-hover: 272 61% 79%;
+        --secondary: 0 0% 12%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 0 0% 12%;
+        --muted-foreground: 0 0% 62%;
+        --accent: 272 61% 73%;
+        --accent-foreground: 273 65% 10%;
+        --destructive: 0 72% 55%;
+        --destructive-foreground: 0 0% 98%;
+        --success: 160 84% 40%;
+        --warning: 32 95% 55%;
+        --info: 217 91% 65%;
+        --border: 0 0% 15%;
+        --input: 0 0% 18%;
+        --ring: 272 61% 73%;
+        --surface: 0 0% 8%;
+        --surface-elevated: 0 0% 11%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+        @apply bg-background text-foreground font-sans;
+        transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    ::selection {
+        background: hsl(var(--primary) / 0.35);
+    }
+}
+
+@layer components {
+    .sn-input {
+        @apply w-full rounded-xl border border-input bg-surface-elevated px-4 py-2.5 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent disabled:opacity-50;
+    }
+    .sn-btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-[background-color,transform,box-shadow] duration-200 hover:bg-primary-hover hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:opacity-50 disabled:pointer-events-none;
+    }
+    .sn-btn-outline {
+        @apply inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface-elevated px-5 py-2.5 text-sm font-semibold transition-[background-color,border-color,transform] duration-200 hover:border-primary hover:text-foreground active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+    }
+    .sn-card {
+        @apply rounded-2xl border border-border bg-card transition-colors duration-200;
+    }
+    .sn-chip {
+        @apply inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground;
+    }
+    .sn-label {
+        @apply mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground;
+    }
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+@keyframes sn-fade {
+    from { opacity: 0.15; }
+    to { opacity: 1; }
+}
+
+.sn-fade {
+    animation: sn-fade 0.35s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
